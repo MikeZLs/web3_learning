@@ -39,5 +39,3 @@ func doingError() error {
     return MyError{Code: 909, Msg: "未知错误！"}
 }
 ```
-
-test
