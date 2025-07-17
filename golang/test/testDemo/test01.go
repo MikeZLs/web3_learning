@@ -12,7 +12,7 @@ import "fmt"
 
 func Test01() {
 	// 创建一个非空整数数组
-	arr := []int{1, 2, 4, 1, 2, 3, 4}
+	arr := []int{1, 1, 3, 2, 2}
 
 	// 创建一个 map 用于记录每个元素出现的次数
 	countMap := make(map[int]int)

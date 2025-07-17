@@ -1,11 +1,9 @@
 package main
 
-import (
-	"web3_learning/golang/test/testDemo"
-)
+import "web3_learning/golang/test/testDemo"
 
 func main() {
-	// testDemo.Test01()
+	//testDemo.Test01()
 
 	// // Test02
 	// inputs := []string{
@@ -98,5 +96,16 @@ func main() {
 	// testDemo.Test13()
 
 	// // Test14
-	testDemo.Test14()
+	//testDemo.Test14()
+
+	//	Test15
+	//arr := []int{1, 9, 0, 7}
+	//newArr := testDemo.Test15(arr)
+	//fmt.Println(newArr)
+
+	//// Test16
+	//testDemo.Test16()
+
+	// Test17
+	testDemo.Test17()
 }

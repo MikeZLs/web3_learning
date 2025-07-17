@@ -9,13 +9,13 @@ import (
 // 然后创建 Rectangle 和 Circle 结构体，实现 Shape 接口。
 // 在主函数中，创建这两个结构体的实例，并调用它们的 Area() 和 Perimeter() 方法。
 
-// 定义一个 Shape 接口
+// Shape 定义一个 Shape 接口
 type Shape interface {
 	Area() float64
 	Perimeter() float64
 }
 
-// 定义一个 Rectangle 结构体，
+// Rectangle 定义一个 Rectangle 结构体，
 type Rectangle struct {
 	Width, Height float64
 }
