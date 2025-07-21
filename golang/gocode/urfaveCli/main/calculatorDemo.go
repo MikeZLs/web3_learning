@@ -40,9 +40,9 @@ func calculatorDemo() {
 				},
 			},
 			{
-				Name:    "subtract",
+				Name:    "product",
 				Usage:   "计算两个数字的乘积",
-				Aliases: []string{"s"},
+				Aliases: []string{"p"},
 				Action: func(ctx context.Context, cmd *cli.Command) error {
 					arg1, _ := strconv.Atoi(cmd.Args().Get(0))
 					arg2, _ := strconv.Atoi(cmd.Args().Get(1))
@@ -51,9 +51,9 @@ func calculatorDemo() {
 				},
 			},
 			{
-				Name:    "subtract",
-				Usage:   "计算两个数字相除",
-				Aliases: []string{"s"},
+				Name:    "quotient",
+				Usage:   "计算两个数字相除的商",
+				Aliases: []string{"q"},
 				Action: func(ctx context.Context, cmd *cli.Command) error {
 					arg1, _ := strconv.Atoi(cmd.Args().Get(0))
 					arg2, _ := strconv.Atoi(cmd.Args().Get(1))
@@ -62,9 +62,9 @@ func calculatorDemo() {
 				},
 			},
 			{
-				Name:    "subtract",
+				Name:    "modulo",
 				Usage:   "计算两个数字取余",
-				Aliases: []string{"s"},
+				Aliases: []string{"m"},
 				Action: func(ctx context.Context, cmd *cli.Command) error {
 					arg1, _ := strconv.Atoi(cmd.Args().Get(0))
 					arg2, _ := strconv.Atoi(cmd.Args().Get(1))
