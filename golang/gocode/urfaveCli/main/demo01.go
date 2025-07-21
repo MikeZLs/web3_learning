@@ -19,7 +19,7 @@ func test01() {
 	// 1. 创建一个新的 cli.Command 作为根命令 (v3 中 App 实际上也是一个 Command)
 	cmd := &cli.Command{
 		Name:  "greet",
-		Usage: "为你心中的世界打个招呼 (v3 a demo)",
+		Usage: "跟世界打个招呼",
 		// 2. 定义 Action，注意新的函数签名！
 		Action: func(ctx context.Context, cmd *cli.Command) error {
 			// ctx 是标准库的 context.Context，用于处理超时、取消等。
@@ -39,7 +39,7 @@ func test01() {
 func test02() {
 	cmd := &cli.Command{
 		Name:  "greet",
-		Usage: "为你心中的世界打个招呼 (v3 a demo)",
+		Usage: "跟世界打个招呼",
 		// 1. 定义标志
 		Flags: []cli.Flag{
 			&cli.StringFlag{
