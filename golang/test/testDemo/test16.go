@@ -32,3 +32,28 @@ func Test16() {
 	close(totalNum)
 	wg.Wait()
 }
+
+func Test1602() {
+	wg := sync.WaitGroup{}
+	chanNum := make(chan int, 1)
+
+	for i := range 9 {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for num := range chanNum {
+				if num > 100 {
+					chanNum <- num
+					return
+				}
+				fmt.Printf("协程%d,打印数字：%d\n", i, num)
+				chanNum <- num + 1
+			}
+		}()
+	}
+
+	chanNum <- 1
+
+	wg.Wait()
+	close(chanNum)
+}

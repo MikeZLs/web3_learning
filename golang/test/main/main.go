@@ -105,7 +105,8 @@ func main() {
 
 	//// Test16
 	//testDemo.Test16()
+	testDemo.Test1602()
 
-	// Test17
-	testDemo.Test17()
+	//// Test17
+	//testDemo.Test17()
 }
