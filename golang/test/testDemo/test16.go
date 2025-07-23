@@ -56,5 +56,5 @@ func Test1602() {
 
 	wg.Wait()
 	close(chanNum)
-	fmt.Println("worked")
+	fmt.Println("")
 }
