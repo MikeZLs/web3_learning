@@ -1,6 +1,9 @@
 package testDemo
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 /*
 	给定一个非空整数数组，除了某个元素只出现一次以外，
@@ -30,5 +33,7 @@ func Test01() {
 			fmt.Println("只出现一次的元素为：", k)
 		}
 	}
+
+	sync.Mutex{}
 
 }
