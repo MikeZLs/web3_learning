@@ -2,7 +2,6 @@ package testDemo
 
 import (
 	"fmt"
-	"sync"
 )
 
 /*
@@ -33,7 +32,5 @@ func Test01() {
 			fmt.Println("只出现一次的元素为：", k)
 		}
 	}
-
-	sync.Mutex{}
 
 }
