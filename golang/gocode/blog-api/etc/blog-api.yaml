@@ -1,0 +1,16 @@
+Name: blog-api
+Host: 0.0.0.0
+Port: 8888
+
+Auth:
+  AccessSecret: "secret123456"
+  AccessExpire: 86400
+
+Database:
+  DataSource: "root:root@tcp(127.0.0.1:3306)/gozero_test?charset=utf8mb4&parseTime=True&loc=Local"
+  ConnectTimeOut: 10
+
+Log:
+  ServiceName: blog-api
+  Mode: console
+  Level: info
