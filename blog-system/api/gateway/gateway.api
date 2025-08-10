@@ -1,0 +1,141 @@
+syntax = "v1"
+
+info (
+	title:   "Blog System API Gateway"
+	desc:    "Personal Blog System API"
+	author:  "Lance"
+	version: "v1.0"
+)
+
+type (
+	// User
+	RegisterReq {
+		Username string `json:"username" validate:"required,min=3,max=50"`
+		Password string `json:"password" validate:"required,min=6"`
+		Email    string `json:"email" validate:"required,email"`
+	}
+	RegisterResp {
+		Id      int64  `json:"id"`
+		Message string `json:"message"`
+	}
+	LoginReq {
+		Username string `json:"username" validate:"required"`
+		Password string `json:"password" validate:"required"`
+	}
+	LoginResp {
+		Id       int64  `json:"id"`
+		Username string `json:"username"`
+		Token    string `json:"token"`
+	}
+	// Blog
+	CreatePostReq {
+		Title   string `json:"title" validate:"required,min=1,max=255"`
+		Content string `json:"content" validate:"required"`
+	}
+	CreatePostResp {
+		Id      int64  `json:"id"`
+		Message string `json:"message"`
+	}
+	GetPostReq {
+		Id int64 `path:"id"`
+	}
+	PostInfo {
+		Id        int64  `json:"id"`
+		Title     string `json:"title"`
+		Content   string `json:"content"`
+		UserId    int64  `json:"user_id"`
+		CreatedAt string `json:"created_at"`
+		UpdatedAt string `json:"updated_at"`
+	}
+	ListPostsReq {
+		Page     int32 `form:"page,default=1"`
+		PageSize int32 `form:"page_size,default=10"`
+	}
+	ListPostsResp {
+		Posts []PostInfo `json:"posts"`
+		Total int64      `json:"total"`
+	}
+	UpdatePostReq {
+		Id      int64  `path:"id"`
+		Title   string `json:"title" validate:"required,min=1,max=255"`
+		Content string `json:"content" validate:"required"`
+	}
+	UpdatePostResp {
+		Message string `json:"message"`
+	}
+	DeletePostReq {
+		Id int64 `path:"id"`
+	}
+	DeletePostResp {
+		Message string `json:"message"`
+	}
+	// Comment
+	CreateCommentReq {
+		PostId  int64  `json:"post_id" validate:"required"`
+		Content string `json:"content" validate:"required"`
+	}
+	CreateCommentResp {
+		Id      int64  `json:"id"`
+		Message string `json:"message"`
+	}
+	ListCommentsReq {
+		PostId   int64 `path:"post_id"`
+		Page     int32 `form:"page,default=1"`
+		PageSize int32 `form:"page_size,default=10"`
+	}
+	CommentInfo {
+		Id        int64  `json:"id"`
+		Content   string `json:"content"`
+		UserId    int64  `json:"user_id"`
+		PostId    int64  `json:"post_id"`
+		CreatedAt string `json:"created_at"`
+	}
+	ListCommentsResp {
+		Comments []CommentInfo `json:"comments"`
+		Total    int64         `json:"total"`
+	}
+)
+
+@server (
+	prefix: /api/v1
+)
+service gateway-api {
+	// User endpoints (no auth required)
+	@handler Register
+	post /user/register (RegisterReq) returns (RegisterResp)
+
+	@handler Login
+	post /user/login (LoginReq) returns (LoginResp)
+
+	// Public blog endpoints
+	@handler GetPost
+	get /posts/:id (GetPostReq) returns (PostInfo)
+
+	@handler ListPosts
+	get /posts (ListPostsReq) returns (ListPostsResp)
+
+	// Public comment endpoints
+	@handler ListComments
+	get /posts/:post_id/comments (ListCommentsReq) returns (ListCommentsResp)
+}
+
+@server (
+	prefix: /api/v1
+	jwt:    Auth
+)
+service gateway-api {
+	// Protected blog endpoints
+	@handler CreatePost
+	post /posts (CreatePostReq) returns (CreatePostResp)
+
+	@handler UpdatePost
+	put /posts/:id (UpdatePostReq) returns (UpdatePostResp)
+
+	@handler DeletePost
+	delete /posts/:id (DeletePostReq) returns (DeletePostResp)
+
+	// Protected comment endpoints
+	@handler CreateComment
+	post /comments (CreateCommentReq) returns (CreateCommentResp)
+}
+

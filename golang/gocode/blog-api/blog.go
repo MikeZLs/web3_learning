@@ -3,10 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-
-	"gozero-learn/blog-api/internal/config"
-	"gozero-learn/blog-api/internal/handler"
-	"gozero-learn/blog-api/internal/svc"
+	"web3_learning/golang/gocode/blog-api/internal/config"
+	"web3_learning/golang/gocode/blog-api/internal/handler"
+	"web3_learning/golang/gocode/blog-api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

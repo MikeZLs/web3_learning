@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package comment;
+
+option go_package = "./comment";
+
+service CommentService {
+  rpc CreateComment(CreateCommentRequest) returns (CreateCommentResponse);
+  rpc ListComments(ListCommentsRequest) returns (ListCommentsResponse);
+}
+
+message CreateCommentRequest {
+  string content = 1;
+  int64 user_id = 2;
+  int64 post_id = 3;
+}
+
+message CreateCommentResponse {
+  int64 id = 1;
+  string message = 2;
+}
+
+message ListCommentsRequest {
+  int64 post_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message CommentInfo {
+  int64 id = 1;
+  string content = 2;
+  int64 user_id = 3;
+  int64 post_id = 4;
+  string created_at = 5;
+}
+
+message ListCommentsResponse {
+  repeated CommentInfo comments = 1;
+  int64 total = 2;
+}

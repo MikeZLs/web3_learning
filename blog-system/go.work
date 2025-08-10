@@ -1,0 +1,9 @@
+go 1.24.4
+
+use (
+	.
+	./api/gateway
+	./common/utils
+	./services/comment
+	./services/user
+)
