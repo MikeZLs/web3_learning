@@ -1,0 +1,30 @@
+Name: gateway-api
+Host: 0.0.0.0
+Port: 8888
+
+Auth:
+  AccessSecret: jwt-secret-key-2025  # 必须与 user service 一致
+  AccessExpire: 86400
+
+UserRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
+
+BlogRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: blog.rpc
+
+CommentRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: comment.rpc
+
+Log:
+  ServiceName: gateway-api
+  Mode: console
+  Level: info
