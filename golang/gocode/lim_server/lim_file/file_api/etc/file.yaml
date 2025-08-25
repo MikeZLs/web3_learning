@@ -1,0 +1,17 @@
+Name: file
+Host: 0.0.0.0
+Port: 20025
+MaxBytes: 5368709120  # 指定go-zero框架中最大上传文件大小
+Etcd: 127.0.0.1:2379
+Log:
+  Encoding: plain
+  TimeFormat: 2006-01-02 15:04:05
+  Stat: false
+FileSize: 2097152  # 单位：字节
+WhiteList:
+  - png
+  - jpg
+  - jpeg
+  - gif
+  - webp
+UploadDir: uploads
