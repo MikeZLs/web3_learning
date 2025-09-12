@@ -17,7 +17,7 @@ module.exports = {
     eth_testnet: {
       url: `https://sepolia.infura.io/v3/a8d3d794739b4366b3ed18393c5ee524`,  
       accounts: {
-        mnemonic:"ripple stadium season kitchen arrive cave rotate yard undo clinic gas topic",
+        mnemonic:" oisfhoak awrjaoilj adsaj ", // 私钥，切勿泄露
       }
     },
     ganache: {
