@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.28;
 
 /**
  * @title ShibStyleMemeToken - 完整的SHIB风格Meme代币合约
@@ -20,11 +20,12 @@ pragma solidity ^0.8.20;
 // ============================================================================
 // OpenZeppelin 5.x 导入 - 引入所需的标准合约库
 // ============================================================================
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";           // 标准ERC20实现
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";           // 所有权管理
-import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol"; // 重入攻击保护
-import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";          // 暂停功能
-import {Context} from "@openzeppelin/contracts/utils/Context.sol";            // 上下文信息
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";                // 标准ERC20实现
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";                 // 所有权管理
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";  // 重入攻击保护
+import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";                // 暂停功能
+import {Context} from "@openzeppelin/contracts/utils/Context.sol";                  // 上下文信息
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 // ============================================================================
 // Uniswap V2 接口定义 - 用于DEX交易和流动性管理
@@ -200,7 +201,7 @@ contract ShibStyleMemeToken is ERC20, Ownable, ReentrancyGuard, Pausable {
         FeeDistribution memory initialFeeDistribution // 初始费用分配配置
     )
     ERC20(name, symbol)        // 调用ERC20构造函数
-    Ownable(_msgSender())      // 调用Ownable构造函数，设置部署者为所有者
+    Ownable(msg.sender)      // 调用Ownable构造函数，设置部署者为所有者
     {
         // 参数验证 - 确保传入参数的有效性
         require(routerAddress != address(0), "Invalid router");
@@ -458,11 +459,7 @@ contract ShibStyleMemeToken is ERC20, Ownable, ReentrancyGuard, Pausable {
      * @param amount 转账数量
      * @return 应缴纳的税费数量
      */
-    function _calculateTax(address from, address to, uint256 amount)
-    internal
-    view
-    returns (uint256)
-    {
+    function _calculateTax(address from, address to, uint256 amount) internal view returns (uint256){
         // 免税地址或swap过程中不收税
         if (hasFlag(from, 0x01) || hasFlag(to, 0x01) || _inSwap) {
             return 0;
